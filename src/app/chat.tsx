@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useLLM } from "react-native-executorch";
 import { BubbleMessage } from "../components/BubbleMessage";
 import { DownloadState } from "../components/DownloadState";
+import { LoadingIndicator } from "../components/Loading";
 import { sanitizeDownloadProgress } from "../utils/sanitizeProgress";
 
 export default function Chat() {
@@ -39,7 +40,6 @@ export default function Chat() {
   }, []);
 
   useEffect(() => {
-    console.log("LLM state changed", llm);
     if (llm) {
       const sanitizedProgress = sanitizeDownloadProgress(llm.downloadProgress);
       setDownloadProgress(sanitizedProgress);
@@ -53,10 +53,11 @@ export default function Chat() {
     llm.sendMessage(value);
   };
 
-  const llmIsReady = llm && llm.isReady && !llm.isGenerating;
+  const llmIsReady = llm;
 
   return (
     <View style={styles.container}>
+      {!llmIsReady && <LoadingIndicator />}
       <DownloadState downloadProgress={downloadProgress} />
       <ScrollView style={styles.scrollView}>
         <View style={styles.messagesContainer}>

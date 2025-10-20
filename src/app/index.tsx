@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import { Bot } from "lucide-react-native";
+import { MessageCircle } from "lucide-react-native";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
@@ -12,14 +12,12 @@ export default function HomeScreen() {
       />
       <View style={styles.buttonsContainer}>
         <Link style={styles.button} href="/chat">
-          <Bot
-            size={28}
-            style={{ backgroundColor: "#d12121ff", height: "100%" }}
-            color="#fff"
-          />
-          <Text style={styles.buttonText}>Chat</Text>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+            <MessageCircle color="#fff" />
+            <Text style={styles.buttonText}>Chat</Text>
+          </View>
         </Link>
-        <Link style={styles.button} href="/chat">
+        <Link disabled style={styles.button} href="/chat">
           <Text style={styles.buttonText}>🖼️ Reconocimiento de imagenes</Text>
         </Link>
       </View>
@@ -63,20 +61,16 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   button: {
-    width: "100%",
     backgroundColor: "#474747ff",
     borderRadius: 8,
-    textAlign: "center",
     color: "#fff",
     padding: 16,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-around",
   },
   buttonText: {
     color: "#fff",
     fontSize: 16,
-    backgroundColor: "blue",
+    flex: 1,
+    textAlign: "center",
     fontWeight: "500",
   },
   logo: {

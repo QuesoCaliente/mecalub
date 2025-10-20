@@ -12,6 +12,10 @@ export function DownloadState({ downloadProgress }: DownloadStateProps) {
   const sanitizedProgress = sanitizeDownloadProgress(downloadProgress);
   const progressPercentage = progressToPercentage(downloadProgress);
 
+  if (downloadProgress === 1) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       {/* Barra de progreso nativa */}
