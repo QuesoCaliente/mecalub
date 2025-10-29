@@ -90,7 +90,7 @@ export default function Chat() {
           disabled={!llmIsReady}
           onPress={sendMessage}
         >
-          <Text style={styles.buttonText}>+</Text>
+          <Text style={styles.buttonText}>➤</Text>
         </TouchableOpacity>
       </View>
     </View>
